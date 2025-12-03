@@ -19,11 +19,17 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend code
-COPY backend/ .
+# Copy all backend code
+COPY backend/action.py .
+COPY backend/app.py .
+COPY backend/decision_making.py .
+COPY backend/main.py .
+COPY backend/memory.py .
+COPY backend/models.py .
+COPY backend/perception.py .
 
 # Expose port (Render uses PORT env variable)
 EXPOSE 10000
 
-# Run with gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:10000", "--timeout", "120", "--workers", "2", "app:app"]
+# Run with gunicorn - use PORT env variable if available
+CMD gunicorn --bind 0.0.0.0:${PORT:-10000} --timeout 120 --workers 2 app:app
