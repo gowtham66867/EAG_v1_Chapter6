@@ -19,14 +19,8 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all backend code
-COPY backend/action.py .
-COPY backend/app.py .
-COPY backend/decision_making.py .
-COPY backend/main.py .
-COPY backend/memory.py .
-COPY backend/models.py .
-COPY backend/perception.py .
+# Copy all backend Python files
+COPY backend/*.py .
 
 # Expose port (Render uses PORT env variable)
 EXPOSE 10000
