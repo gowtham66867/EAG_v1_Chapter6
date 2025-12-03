@@ -3,13 +3,14 @@ import asyncio
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
+# Load environment variables from .env file (for local development)
+# In production (Render), set GEMINI_API_KEY as environment variable in dashboard
 load_dotenv()
 
 # Configure the Gemini client
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
-    raise ValueError("GEMINI_API_KEY not found in .env file")
+    raise ValueError("GEMINI_API_KEY not found. Set it as environment variable or in .env file")
 genai.configure(api_key=GEMINI_API_KEY)
 
 async def get_wellness_plan(prompt: str, timeout: int = 120) -> str:

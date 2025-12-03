@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // 3. Call the backend API
-            const response = await fetch('http://127.0.0.1:5002/api/generate-plan', {
+            const response = await fetch('/api/generate-plan', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
